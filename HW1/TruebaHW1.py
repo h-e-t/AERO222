@@ -1,6 +1,18 @@
 from math import factorial
 from numpy import sin, cos 
 
+import matplotlib.pyplot as plt
+
+def plotting(x, y, tit):
+    plt.semilogy(x , y)
+    plt.title(tit)
+
+    plt.xlabel('n')
+    plt.ylabel('f(x_n)')
+
+    plt.show()
+
+
 def f(x):
     return 3 * x**2 * sin(x) - x * cos(x) + 4  
 
@@ -14,12 +26,16 @@ def regulaFalsi():
     eps = 1E-8
     limit = 1
     counter = 0 
-
+    
+    values = []
+    iteration = []
+   
     while abs(limit) > eps:
         counter += 1
+
         x_next = b - (f(b) * (b - a))/(f(b) - f(a))
         limit = f(x_next)/fp(x_next)
-        print(x_next)
+        # print(x_next)
 
         if f(x_next) * f(a) > 0:
         # if x_next * a > 0:
@@ -27,10 +43,14 @@ def regulaFalsi():
         else:
             b = x_next
 
-        
+        values.append(f(x_next))
+        iteration.append(counter)
 
-    print(f(b)/fp(b))
-
+    plotting(iteration, values, 'Regula Falsi')
+    # print(values)
+    # print(iteration)
+    # print(counter)
+    
 # regulaFalsi()
 
 
@@ -69,22 +89,38 @@ def roundOffB():
 def sum3A():
     k = 0
     sum = 0  
+
+    iterations = []
+    summing = []
+
     while k <= 10:
         sum += (-5)**k / factorial(k)
         k += 1
 
-    print(sum)
+        iterations.append(k)
+        summing.append(sum)
+
+    plt.plot(iterations, summing)
+    plt.title('Sum 3A')
+    plt.show()
+    
 
 def sum3B(): 
     k = 0
     sum = 0 
+
+    iterations = []
+    summing = []
     while k <= 10: 
         sum += 5**k / factorial(k)
         k += 1 
-    num = 1 / sum
+        num = 1 / sum
+        iterations.append(k)
+        summing.append(num)
 
-    print(num)
+    plt.semilogy(iterations, summing)
+    plt.title('Sum 3B')
+    plt.show()
 
-
-sum3A()
 sum3B()
+
