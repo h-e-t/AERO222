@@ -1,0 +1,1 @@
+print('Your mom is a bit of a hoe')
