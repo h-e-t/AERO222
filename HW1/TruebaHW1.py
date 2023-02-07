@@ -238,6 +238,10 @@ roundOffB()
 sumA = sum3A()
 sumB = sum3B()
 
+print('A reason for the second sum converging to the true value so much quicker is that it')
+print('always has the same sign, meaning that every additional term gets it closer to the real value.')
+print("The other sum flips across the x axis, meaning it doesn't always get closer and takes longer to converge.")
+
 plt.semilogy(sumA[0], sumA[1],label = sumA[2])
 plt.semilogy(sumB[0], sumB[1],label = sumB[2])
 
