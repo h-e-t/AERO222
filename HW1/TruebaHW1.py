@@ -229,7 +229,7 @@ plt.plot(rF[0], rF[1], label = rF[2])
 plt.xlabel('Iteration')
 plt.ylabel('F(x_n)')
 
-plt.legend(loc = 'center right')
+plt.legend(loc = 'upper right')
 plt.show()  
         
 roundOffA()
