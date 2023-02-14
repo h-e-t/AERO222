@@ -221,6 +221,7 @@ print()
 biSect = bisection()
 sec = secant()
 rF = regulaFalsi()
+print()
 
 plt.plot(biSect[0], biSect[1], label = biSect[2])
 plt.plot(sec[0], sec[1], label = sec[2])
