@@ -253,4 +253,8 @@ plt.legend(loc = 'center right')
 
 plt.show()
 
-
+# git pull origin main 
+# git status
+# git add .  /  # git restore .
+# git commit -m "message here"
+# git push origin main 
