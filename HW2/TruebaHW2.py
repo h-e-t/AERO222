@@ -1,10 +1,12 @@
-from math import exp, tan, cos 
+from math import exp, cos 
+import numpy as np 
+import matplotlib.pyplot as plt 
 
 def f(x): 
-    return tan(x) + exp(x) - x ** 2
+    return np.arctan(x) + exp(x) - x ** 2
 
-def fp(x):\
-    return 1 / cos(x)**2 + exp(x) - 2 * x
+def fp(x):
+    return 1 / (1+x**2) + np.exp(x) - 2 * x
 
 # 1A
 def newton1A(f, fp):
@@ -21,4 +23,40 @@ def newton1A(f, fp):
         xold = xnew
         count += 1
 
-newton1A(f, fp)
+def newton1B(f, fp):
+    xold = 0
+    x = xold - f(xold)/fp(xold)
+    xnew = x - f(x)/fp(x)
+    count = 0 
+    error = 0
+
+    while abs(xnew - x) < abs(x-xold):
+        xold = x 
+        x = xnew
+        xnew = xnew - f(xnew)/fp(xnew)
+
+        count += 1
+
+        error = abs(f(xnew)/fp(xnew))
+        print(abs(xnew - x) < abs(x-xold))
+
+    print(count)
+    print(error)
+
+def ROC(fp):
+    x = np.linspace(-10,10,500)
+
+    plt.plot(x,fp(x),'b-',label=r'$g^\prime(x)$')
+    plt.plot(x,-1*np.ones_like(x),'k--',label=r'$g(x) = \pm 1$')
+    plt.plot(x,np.ones_like(x),'k--')
+    plt.xlim([-10,10])
+    plt.ylim([-3,3])
+    plt.xlabel(r'$x$')
+    plt.ylabel(r'$g^\prime(x)$')
+    plt.title('Range of convergence for the Newton method')
+    plt.legend()
+    plt.show()
+
+# newton1A(f, fp)
+# newton1B(f, fp)
+ROC(fp)
