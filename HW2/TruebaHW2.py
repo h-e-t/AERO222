@@ -19,9 +19,11 @@ def newton1A(f, fp):
     while abs(res) > resT:
         xnew = xold - f(xold)/fp(xold)
         res = f(xnew)
-        print(xnew)
+        # print(xnew)
         xold = xnew
         count += 1
+
+    print(f'(1A) The final residual is {f(xnew)} after {count} iterations')
 
 def newton1B(f, fp):
     xold = 0
@@ -38,10 +40,12 @@ def newton1B(f, fp):
         count += 1
 
         error = abs(f(xnew)/fp(xnew))
-        print(abs(xnew - x) < abs(x-xold))
+        # print(abs(xnew - x) < abs(x-xold))
 
-    print(count)
-    print(error)
+    # print(count)
+    # print(error)
+    print(f'(1B) The final recorded error was {error} after {count} iterations.')
+
 
 def ROC(fp):
     x = np.linspace(-10,10,500)
@@ -57,6 +61,8 @@ def ROC(fp):
     plt.legend()
     plt.show()
 
-# newton1A(f, fp)
-# newton1B(f, fp)
+print()
+newton1A(f, fp)
+print()
+newton1B(f, fp)
 ROC(fp)
